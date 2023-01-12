@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { catchError, map, Observable, of } from 'rxjs';
 
 @Component({
@@ -12,7 +12,7 @@ export class AppComponent implements OnInit {
   public counter: number = 0;
 
   form: FormGroup;
-  thankYouMessage: string;
+  thankYouMessage: string = 'Fill out the form to the left and click \'Generate\' to create a unique and thoughtful thank you note.';
 
   constructor(
     private _formBuilder: FormBuilder,
@@ -30,9 +30,10 @@ export class AppComponent implements OnInit {
 
   createForm() {
     this.form = this._formBuilder.group({
-      'usersName': [],
-      'occasion': [],
-      'gift': [],
+      'usersName': [''],
+      'occasion': [''],
+      'gift': [''],
+      'giver': ['']
     });
   }
 
@@ -46,18 +47,18 @@ export class AppComponent implements OnInit {
       this.thankYouMessage = x.choices[0].text;
       console.log(this.thankYouMessage);
     });
-    // this.thankYouMessage = "thanks!";
   };
 
   makeRequest(): Observable<any> {
-    // var body = {
-    //   usersName: this.form.controls['usersName'].value,
-    //   occasion: this.form.controls['occasion'].value,
-    //   gift: this.form.controls['gift'].value,
-    // }
+    var body = {
+      usersName: this.form.controls['usersName'].value,
+      occasion: this.form.controls['occasion'].value,
+      gift: this.form.controls['gift'].value,
+      giver: this.form.controls['giver'].value,
+    }
     // console.log(body);
     const config = { headers: new HttpHeaders().set('Content-Type', 'application/json')};
-    return this.httpClient.post<any>("http://localhost:8080", { UsersName: 'stephen', Occasion: 'Wedding', Gift: 'iPhone' }, config)
+    return this.httpClient.post<any>("http://localhost:8080", body, config)
     .pipe(
       catchError(e => of(console.log(e)))
     );

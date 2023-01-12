@@ -24,6 +24,7 @@ type InputDTO struct {
 	UsersName string `json:"usersName"`
 	Occasion  string `json:"occasion"`
 	Gift      string `json:"gift"`
+	Giver     string `json:"giver"`
 }
 
 func post(w http.ResponseWriter, r *http.Request) {
@@ -64,7 +65,7 @@ func newCompletionRequest(input InputDTO) *http.Request {
 	postBody, _ := json.Marshal(CompletionInput{
 		Model: "text-davinci-003",
 		// Prompt:      "Generate a thank you note to my grandparents for getting me a Kitchen Aid mixer for a get well gift. My grandmas name is Rose, my Grandpas name is Charles. My name is stephen. Emphasize the occasion",
-		Prompt:      fmt.Sprintf("Generate a thank you from %s for receiving a %s for a %s gift.", input.UsersName, input.Gift, input.Occasion),
+		Prompt:      fmt.Sprintf("Generate a thank you note from %s for receiving a %s for a %s gift from %s.", input.UsersName, input.Gift, input.Occasion, input.Giver),
 		Temperature: 0.6,
 		Max_Tokens:  1500,
 	})
@@ -104,6 +105,12 @@ func main() {
 	r := mux.NewRouter()
 	r.HandleFunc("/", post).Methods(http.MethodPost)
 	r.HandleFunc("/", optionsHandler).Methods(http.MethodOptions)
+
+	r.HandleFunc("/health", func(w http.ResponseWriter, r *http.Request) {
+		// an example API handler
+		json.NewEncoder(w).Encode(map[string]bool{"ok": true})
+	}).Methods(http.MethodGet)
+
 	r.HandleFunc("/", notFound)
 
 	// headersOk := handlers.AllowedHeaders([]string{"X-Requested-With"})

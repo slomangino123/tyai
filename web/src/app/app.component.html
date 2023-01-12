@@ -1,42 +1,35 @@
+<div class="content">
 
-<div class="container" autosize>
+  <div class="form-container">
 
-  <div class="content">
-
-    <!-- <button mat-raised-button (click)="increment()">Increment</button>
-    <p>{{counter}}</p> -->
-    
     <form class="form" [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
 
       <mat-form-field class="form-element">
         <input matInput placeholder="Your name" formControlName="usersName">
-        <!-- <mat-error *ngIf="!form.controls['usersName'].valid && form.controls['usersName'].touched">
-          {{ getErrorUsersName() }}
-        </mat-error> -->
+      </mat-form-field>
+      
+      <mat-form-field class="form-element">
+        <input matInput placeholder="Gift" formControlName="gift">
       </mat-form-field>
       
       <mat-form-field class="form-element">
         <input matInput placeholder="Occasion" formControlName="occasion">
-        <!-- <mat-error *ngIf="!form.controls['occasion'].valid && form.controls['occasion'].touched">
-          {{ getErrorOccasion() }}
-        </mat-error> -->
       </mat-form-field>
       
       <mat-form-field class="form-element">
-        <input matInput placeholder="What was the gift?" formControlName="gift">
-        <!-- <mat-error *ngIf="!form.controls['gift'].valid && form.controls['gift'].touched">
-          {{ getErrorGift() }}
-        </mat-error> -->
+        <input matInput placeholder="Who gave it to you" formControlName="giver">
       </mat-form-field>
 
       <div class="form-element">
         <button mat-raised-button color="primary" type="submit" class="button" [disabled]="!form.valid">Generate</button>
       </div>
+
     </form>
 
-    
+  </div>
+
+  <div class="result-container">
     <mat-form-field class="thank-you">
-      <!-- <mat-label>Thank you note</mat-label> -->
       <textarea matInput cdkTextareaAutosize [disabled]="true">{{ thankYouMessage }}</textarea>
     </mat-form-field>
     
@@ -44,8 +37,9 @@
       <mat-icon fontIcon="content_copy"></mat-icon>
       <mat-label>Copy</mat-label>
     </button>
-
   </div>
 
 </div>
+
+
 <router-outlet></router-outlet>
