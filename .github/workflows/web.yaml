@@ -41,7 +41,7 @@ jobs:
     - name: Build
       run: |
         cd web
-        ng build
+        npm run build
 
     - name: Deploy
       if: success()
