@@ -1,9 +1,13 @@
 name: GitHub Pages
 
 on:
+  workflow_dispatch:
   push:
     branches:
     - master
+    paths:
+      - "web/**"
+      - .github/workflows/web.yaml
 
 jobs:
   deploy:
