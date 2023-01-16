@@ -39,8 +39,12 @@ jobs:
     #   run: npm run test:headless
 
     - name: Build
-      run: npm run build:prod
+      run: |
+        cd web
+        ng build
 
     - name: Deploy
       if: success()
-      run: aws s3 sync ./dist/web s3://arn:aws:s3:us-east-1:836386213271:easy-thank-you-notes-web
+      run: |
+        cd web
+        aws s3 sync ./dist/web s3://arn:aws:s3:us-east-1:836386213271:easy-thank-you-notes-web
