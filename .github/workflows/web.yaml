@@ -47,4 +47,4 @@ jobs:
       if: success()
       run: |
         cd web
-        aws s3 sync ./dist/web s3://easy-thank-you-notes-web
+        aws s3 sync ./dist/web s3://easy-thank-you-notes-web --acl public-read
