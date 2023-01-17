@@ -121,3 +121,9 @@ resource "aws_route53_record" "api_alias" {
     evaluate_target_health = false
   }
 }
+
+# ECR
+resource "aws_ecr_repository" "tyai-api" {
+  name = "tyai-api"
+  image_tag_mutability = "MUTABLE"
+}

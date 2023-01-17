@@ -1,0 +1,11 @@
+{
+    "AWSEBDockerrunVersion": "1",
+    "Image": {
+      "Name": "836386213271.dkr.ecr.us-east-1.amazonaws.com/tyai-api:${IMAGE_TAG}"
+    },
+    "Ports": [
+      {
+        "ContainerPort": 8080
+      }
+    ]
+  }

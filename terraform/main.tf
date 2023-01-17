@@ -10,3 +10,9 @@ module "api" {
   instance_type       = var.instance_type
   max_size            = var.max_size
 }
+
+module "web" {
+  source = "./modules/web"
+
+  hosted_zone_id = var.hosted_zone_id
+}
