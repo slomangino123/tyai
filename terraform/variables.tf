@@ -23,11 +23,11 @@ variable "db_client_security_group" {}
 variable "db_server_security_group" {}
 variable "loadbalancer_certificate_arn" {
   type    = string
-  default = "arn:aws:acm:us-east-1:836386213271:certificate/cdc6b564-d078-47d9-9536-16b00aa34765"
+  default = "arn:aws:acm:us-east-1:836386213271:certificate/ec33ea96-3b71-4c7f-bd97-06b56b7b4579"
 }
 variable "certificate_arn" {
   type    = string
-  default = "arn:aws:acm:us-east-1:836386213271:certificate/cdc6b564-d078-47d9-9536-16b00aa34765"
+  default = "arn:aws:acm:us-east-1:836386213271:certificate/ec33ea96-3b71-4c7f-bd97-06b56b7b4579"
 }
 
 

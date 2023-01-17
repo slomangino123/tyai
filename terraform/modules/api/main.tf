@@ -38,6 +38,11 @@ resource "aws_elastic_beanstalk_environment" "tyai" {
     value     = "200"
   }
   setting {
+    namespace = "aws:elasticbeanstalk:environment:process:default"
+    name      = "Port"
+    value     = "8080"
+  }
+  setting {
     namespace = "aws:elasticbeanstalk:environment"
     name      = "LoadBalancerType"
     value     = "application"
@@ -102,7 +107,7 @@ resource "aws_elastic_beanstalk_environment" "tyai" {
   setting {
     namespace = "aws:elasticbeanstalk:environment:process:default"
     name      = "HealthCheckPath"
-    value     = "/health/get"
+    value     = "/health"
   }
 }
 
